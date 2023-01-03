@@ -1,101 +1,49 @@
-var title= document.querySelector('#items')
-
-console.log(items.parentNode)
-items.parentNode.style.backgroundColor='#CCC'
-//parentElement
-
-console.log(items.parentElement)
-tems.parentElement.style.backgroundColor='#CCC'
-
-//lastELementchild
-console.log(items.lastElementChild)
-
-
-items.lastElementChild.textContent="helooo"
-
-
-//firstelementchild
-console.log(title.firstElementChild)
-
-title.firstElementChild.textContent="himamni"
-
-
-//childelement
- console.log(title.firstChild)
-
-
- //lastchild
- console.log(title.lastChild)
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
 
 
 
- title.lastChild.textContent="himamni"
+form.addEventListener('submit', addItem);
+function addItem(e){
+  e.preventDefault();
+
+  var newItem = document.getElementById('item').value;
+        
+  var li = document.createElement('li');
+  li.className = 'list-group-item';
+  li.appendChild(document.createTextNode(newItem));
+
+  itemList.addEventListener('click', removeItem);
+
+  var deleteBtn = document.createElement('button');
 
 
-//firstchild
+  deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
 
-console.log(title.firstChild)
+  deleteBtn.appendChild(document.createTextNode('X'));
 
-title.firstChild.textContent="hi"
-
-
-//nxtsibling
-
-console.log(title.nextSibling)
-
-title.nextSibling.textContent="mnsi"
-nextelementsibling
-console.log(title.nextElementSibling)
+  li.appendChild(deleteBtn);
+  itemList.appendChild(li);
+  //add edit
+  
+  var editBtn = document.createElement('button');
 
 
-   //previoussibling
-console.log(title.previousSibling)
+  editBtn.className = 'btn btn-primary float-right delete';
 
-title.previousSibling.textContent="himamni"
+  editBtn.appendChild(document.createTextNode('edit'));
 
-previouselementsibling
- console.log(title.previousElementSibling
+  li.appendChild(editBtn);
+  itemList.appendChild(li);
 
-title.previousElementSibling.textContent="ram"
-
-//createlement
-
-
-var mydiv=document.createElement('div')
-mydiv.className ='hello'
-//setattribute
-mydiv.setAttribute('title','hello world')
-
-//addtextnode
-var mydivText= document.createTextNode('hello')
-//add text
-mydiv.appendChild(mydivText)
-console.log(mydiv)
- var container=document.querySelector('header .container')
- var h1=document.querySelector('header h1')
- container.insertBefore(mydiv,h1)
-
-
- var parentElement=document.getElementById('items')
-
- parentElement.innerHTML='<li>hello</li> <li>itme 1</li><li>Item 2</li><li >Item 3</li><li>Item 4</li>'
-
- 
- console.log(parentElement)
-
-
-
-
-
- 
-
-
- 
- 
-
-
- 
-
-
+}
+function removeItem(e){
+  if(e.target.classList.contains('delete')){
+    if(confirm('do you want to delete')){
+      var li = e.target.parentElement;
+      itemList.removeChild(li);
+    }
+  }
+}
 
 
